@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Discord-Weaver: Discord Memory Forensics Analysis
 
 ## Kiến trúc
@@ -239,3 +240,6 @@ Edit `amc/filtering.py` to customize artifact filtering logic.
 **Created**: 2026
 **Based on**: RAM-Weaver Architecture
 **Status**: Active Development
+=======
+# NT334.DISCORD_RAM_WEAVER
+>>>>>>> 4ac65e2dcf3736ca7bdeabd3cd3863d926b64563
