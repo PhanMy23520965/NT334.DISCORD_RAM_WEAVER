@@ -6,49 +6,36 @@ Statistics:
   "original_strings": 518584,
   "filtered_strings": 10401,
   "original_json_objects": 478,
-  "messages": 4,
+  "messages": 1,
   "user_data": 1,
-  "metadata": 30
+  "metadata": 18,
+  "partial_messages": 3,
+  "channels_with_messages": 1
 }
 
-Messages (4):
+Messages (1):
 ----------------------------------------------------------------------
-{"mobile_network_type": "unknown", "content": "Yes  I do. Did you know Bruce Lee was a cha cha dancer?", "nonce": "1504814031960014848", "tts": false, "flags": 0}
-{"mobile_network_type": "unknown", "content": "do you like dance?", "nonce": "1504813979598323712", "tts": false, "flags": 0}
 {"content": 669}
-{"mobile_network_type": "unknown", "content": "If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.", "nonce": "1504814224528900096", "tts": false, "flags": 0}
 
 User Data (1):
 ----------------------------------------------------------------------
 {"id": "1133266068920619060", "username": "myphan4605", "email": "phannguyenkieumy123@gmail.com"}
 
-Metadata (30):
+Metadata (18):
 ----------------------------------------------------------------------
 {"timestamp": 1778845993.205, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
 {"timestamp": 1778846000.025, "category": "electron", "message": "window.focus", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846000.025, "category": "electron", "message": "app.browser-window-focus", "type": "ui"}
-{"timestamp": 1778846012.135, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846012.135, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
-{"timestamp": 1778846020.405, "category": "electron", "message": "window.focus", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846020.405, "category": "electron", "message": "app.browser-window-focus", "type": "ui"}
-{"timestamp": 1778846024.526, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846024.526, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
-{"timestamp": 1778846042.525, "category": "electron", "message": "window.focus", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846042.526, "category": "electron", "message": "app.browser-window-focus", "type": "ui"}
-{"timestamp": 1778846045.437, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846045.438, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
-{"timestamp": 1778846053.814, "category": "electron", "message": "window.focus", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846053.815, "category": "electron", "message": "app.browser-window-focus", "type": "ui"}
-{"timestamp": 1778846056.765, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846056.766, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
-{"timestamp": 1778846061.88, "category": "electron", "message": "window.focus", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846061.88, "category": "electron", "message": "app.browser-window-focus", "type": "ui"}
-{"timestamp": 1778845895.397, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778845895.397, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
-{"timestamp": 1778845990.657, "category": "electron", "message": "window.focus", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778845990.658, "category": "electron", "message": "app.browser-window-focus", "type": "ui"}
-{"timestamp": 1778845993.205, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
-{"timestamp": 1778846071.088, "category": "electron", "message": "window.blur", "type": "ui", "data": {"id": 2, "url": "https://discordapp.com/channels/@me/1504737847104766034"}}
 {"timestamp": 1778846071.088, "category": "electron", "message": "app.browser-window-blur", "type": "ui"}
 {"$id": "page.json#", "$schema": "http://json-schema.org/draft-06/schema#", "type": "object", "optional": true, "required": ["startedDateTime", "id", "title", "pageTimings"], "properties": {"startedDateTime": {"type": "string", "format": "date-time", "pattern": "^(\\d{4})(-)?(\\d\\d)(-)?(\\d\\d)(T)?(\\d\\d)(:)?(\\d\\d)(:)?(\\d\\d)(\\.\\d+)?(Z|([+-])(\\d\\d)(:)?(\\d\\d))"}, "id": {"type": "string", "unique": true}, "title": {"type": "string"}, "pageTimings": {"$ref": "pageTimings.json#"}, "comment": {"type": "string"}}}
 {"timestamp": 1778845438.609, "category": "electron", "message": "app.web-contents-created", "type": "ui"}

@@ -1,21 +1,4 @@
 """Adaptive Memory Extractor for Discord.
-
-BUGS FIXED vs original:
-  BUG-1 (CRITICAL): regex r'[ -~]{8,}' only matches ASCII printable chars.
-      Any JSON with Vietnamese/emoji/unicode is split into fragments
-      -> json.loads always fails -> 0 JSON objects extracted.
-      FIX: Use bracket-matching directly on decoded text instead.
-
-  BUG-2: _filter_strings drops strings with URLs *before* JSON parsing.
-      Discord messages often contain links -> valid JSONs silently discarded.
-      FIX: JSON extraction runs on raw decoded text, bypassing noise filter.
-
-  BUG-3: noise pattern [A-Za-z0-9+/]{40,} matched Discord avatar hashes /
-      snowflake IDs inside JSON strings -> false-positive noise removal.
-      FIX: noise filter applied only to plain text strings, not JSON.
-
-  BUG-4: snowflake regex was fragile and returned empty matches.
-      FIX: simplified pattern using non-digit boundary approach.
 """
 
 from __future__ import annotations
@@ -94,7 +77,7 @@ class AdaptiveMemoryExtractor:
             try:
                 # To avoid OOM on 2GB+ files, we scan in overlapping chunks
                 chunk_size = 100 * 1024 * 1024 # 100 MB
-                overlap = 1024 * 1024 # 1 MB
+                overlap = 10* 1024 * 1024 # 10 MB
                 
                 file_size = os.path.getsize(dump_path)
                 with open(dump_path, 'rb') as f:

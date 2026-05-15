@@ -2,20 +2,6 @@
 
 Filters extracted artifacts to remove noise and keep Discord-relevant data.
 
-BUGS FIXED vs original:
-  BUG-5: _filter_strings was called with all noise_patterns, including the
-      URL pattern and base64 pattern, which discarded valid Discord JSON
-      strings that happened to contain links or long tokens.
-      FIX: noise filter is now applied to plain text strings only (not JSON).
-      JSON objects coming from the bracket-matcher are already validated.
-
-  BUG-6: _categorize_json_objects checked only top-level 'content'/'message'
-      for messages, missing cases where Discord stores message objects nested
-      under 'data', 'body', or with 'author' dict instead of string.
-      FIX: broadened categorisation heuristics.
-
-  BUG-7: metadata extraction collected all leftover objects, including noise.
-      FIX: metadata now requires at least one recognisable Discord field.
 """
 
 from __future__ import annotations
@@ -23,7 +9,7 @@ from __future__ import annotations
 import logging
 import re
 import json
-from typing import List
+from typing import List, Dict
 from dataclasses import dataclass
 
 log = logging.getLogger("discord_weaver.amc.filtering")
@@ -34,6 +20,8 @@ class FilteredResult:
     messages: List[dict]
     user_data: List[dict]
     metadata: List[dict]
+    partial_messages: List[dict]  # FIX BUG-10: New field for partial messages
+    messages_by_channel: Dict[str, List[dict]]  # FIX BUG-11: Channel grouping
     statistics: dict
 
 
@@ -42,6 +30,8 @@ class ArtifactFilter:
 
     # Fields that indicate a Discord *message* object
     MESSAGE_KEYS = {'content', 'author', 'channel_id', 'channelId', 'guild_id', 'guildId', 'attachments'}
+    # Fields that indicate a partial message (missing one of the above)
+    PARTIAL_MESSAGE_KEYS = {'content', 'author', 'channel_id', 'channelId', 'timestamp', 'id', 'nonce'}
     # Fields that indicate a Discord *user* object
     USER_KEYS = {'username', 'avatar', 'userId', 'discriminator', 'globalName', 'public_flags'}
     # Fields that indicate any Discord-adjacent metadata worth keeping
@@ -63,12 +53,16 @@ class ArtifactFilter:
         filtered_strings = self._filter_strings(strings)
 
         # Categorize JSON objects (already validated by extractor)
-        messages, user_data, metadata = self._categorize_json_objects(json_objects)
+        messages, user_data, metadata, partial_messages = self._categorize_json_objects(json_objects)
+
+        # FIX BUG-11: Group messages by channel for context preservation
+        messages_by_channel = self._group_by_channel(messages + partial_messages)
 
         # Deduplication
         messages = self._deduplicate(messages)
         user_data = self._deduplicate(user_data)
         metadata = self._deduplicate(metadata)
+        partial_messages = self._deduplicate(partial_messages)
 
         statistics = {
             'original_strings': len(strings),
@@ -77,14 +71,18 @@ class ArtifactFilter:
             'messages': len(messages),
             'user_data': len(user_data),
             'metadata': len(metadata),
+            'partial_messages': len(partial_messages),  # FIX BUG-10: Report partial messages
+            'channels_with_messages': len(messages_by_channel),  # FIX BUG-11: Channel count
         }
 
         log.info(
-            f"Filter results: {len(messages)} messages, "
+            f"Filter results: {len(messages)} complete messages, "
+            f"{len(partial_messages)} partial messages, "
             f"{len(user_data)} users, "
-            f"{len(metadata)} metadata objects"
+            f"{len(metadata)} metadata objects, "
+            f"{len(messages_by_channel)} channels"
         )
-        return FilteredResult(messages, user_data, metadata, statistics)
+        return FilteredResult(messages, user_data, metadata, partial_messages, messages_by_channel, statistics)
 
     # ------------------------------------------------------------------
 
@@ -107,10 +105,11 @@ class ArtifactFilter:
         return any(kw in string.lower() for kw in keywords)
 
     def _categorize_json_objects(self, json_objects: List[dict]) -> tuple:
-        """Categorise JSON objects into messages / user_data / metadata."""
+        """Categorise JSON objects into messages / user_data / metadata / partial_messages."""
         messages = []
         user_data = []
         metadata = []
+        partial_messages = []  # FIX BUG-10: New category
 
         for obj in json_objects:
             keys = set(obj.keys())
@@ -120,7 +119,19 @@ class ArtifactFilter:
                 # Exclude obvious UI logs that were missed by extractor
                 if obj.get('message') in ['window.blur', 'app.browser-window-blur', 'app.browser-window-focus']:
                     continue
-                messages.append(obj)
+                
+                # Check if this is a complete or partial message
+                has_content = 'content' in keys
+                has_author = 'author' in keys or 'username' in keys
+                has_channel = any(k in keys for k in ['channel_id', 'channelId'])
+                
+                if has_content and has_author:
+                    messages.append(obj)
+                elif (has_content or has_author or has_channel) and len(keys & self.PARTIAL_MESSAGE_KEYS) >= 2:
+                    # FIX BUG-10: Keep partial messages instead of discarding
+                    partial_messages.append(obj)
+                else:
+                    messages.append(obj)
 
             # User: has username / avatar / discriminator
             elif keys & self.USER_KEYS:
@@ -133,7 +144,28 @@ class ArtifactFilter:
             # Skip objects with no recognisable Discord fields
             # (reduces noise in output)
 
-        return messages, user_data, metadata
+        return messages, user_data, metadata, partial_messages
+
+    def _group_by_channel(self, messages: List[dict]) -> Dict[str, List[dict]]:
+        """FIX BUG-11: Group messages by channel for context preservation."""
+        grouped = {}
+        
+        for msg in messages:
+            # Try different channel ID formats
+            channel_id = (
+                msg.get('channel_id') or 
+                msg.get('channelId') or 
+                msg.get('guild_id') or 
+                msg.get('guildId') or 
+                'unknown_channel'
+            )
+            
+            if channel_id not in grouped:
+                grouped[channel_id] = []
+            grouped[channel_id].append(msg)
+        
+        log.info(f"Grouped messages into {len(grouped)} channels")
+        return grouped
 
     def _deduplicate(self, items: List[dict]) -> List[dict]:
         seen = set()
@@ -143,10 +175,18 @@ class ArtifactFilter:
             content_val = item.get('content', '')
             content_str = str(content_val)[:60] if content_val is not None else ""
             
-            key = item.get('id') or item.get('nonce') or content_str
+            # Try multiple keys for deduplication
+            key = (
+                item.get('id') or 
+                item.get('nonce') or 
+                content_str or
+                json.dumps(item, sort_keys=True, default=str)[:100]
+            )
+            
             if key and key not in seen:
                 seen.add(key)
                 result.append(item)
             elif not key:
                 result.append(item)
+        
         return result

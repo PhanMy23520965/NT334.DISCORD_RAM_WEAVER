@@ -1,32 +1,7 @@
 [
   {
-    "mobile_network_type": "unknown",
-    "content": "Yes I do. Did you know Bruce Lee was a cha cha dancer?",
-    "nonce": "1504814031960014848",
-    "tts": false,
-    "flags": 0,
-    "restored": true,
-    "original_content": "Yes  I do. Did you know Bruce Lee was a cha cha dancer?"
-  },
-  {
-    "mobile_network_type": "unknown",
-    "content": "do you like dance?",
-    "nonce": "1504813979598323712",
-    "tts": false,
-    "flags": 0,
-    "restored": true,
-    "original_content": "do you like dance?"
-  },
-  {
-    "content": "669",
-    "restored": true,
-    "original_content": "669"
-  },
-  {
-    "mobile_network_type": "unknown",
-    "content": "If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.",
-    "nonce": "1504814224528900096",
-    "tts": false,
-    "flags": 0
+    "content": 669,
+    "author_restored": true,
+    "restored_from_partial": true
   }
 ]
