@@ -41,13 +41,14 @@ class ArtifactFilter:
     """Filters Discord artifacts extracted from memory."""
 
     # Fields that indicate a Discord *message* object
-    MESSAGE_KEYS = {'content', 'message'}
+    MESSAGE_KEYS = {'content', 'author', 'channel_id', 'channelId', 'guild_id', 'guildId', 'attachments'}
     # Fields that indicate a Discord *user* object
-    USER_KEYS = {'username', 'avatar', 'userId', 'discriminator', 'globalName'}
+    USER_KEYS = {'username', 'avatar', 'userId', 'discriminator', 'globalName', 'public_flags'}
     # Fields that indicate any Discord-adjacent metadata worth keeping
     META_KEYS = {
         'guildId', 'channelId', 'nonce', 'type', 'webhook',
         'embed', 'attachment', 'reaction', 'role', 'permission',
+        'read_state', 'user_settings', 'experiments'
     }
 
     def __init__(self, noise_patterns: List[str] = None, key_threshold: int = 2):
@@ -114,8 +115,11 @@ class ArtifactFilter:
         for obj in json_objects:
             keys = set(obj.keys())
 
-            # Message: has 'content' or 'message' field
-            if keys & self.MESSAGE_KEYS:
+            # Message: prioritize objects with 'content' and 'author' or 'channel_id'
+            if any(k in keys for k in ['content', 'channel_id', 'channelId', 'guild_id', 'guildId']):
+                # Exclude obvious UI logs that were missed by extractor
+                if obj.get('message') in ['window.blur', 'app.browser-window-blur', 'app.browser-window-focus']:
+                    continue
                 messages.append(obj)
 
             # User: has username / avatar / discriminator
@@ -135,7 +139,11 @@ class ArtifactFilter:
         seen = set()
         result = []
         for item in items:
-            key = item.get('id') or item.get('nonce') or item.get('content', '')[:60]
+            # Safeguard: Ensure content is a string before slicing
+            content_val = item.get('content', '')
+            content_str = str(content_val)[:60] if content_val is not None else ""
+            
+            key = item.get('id') or item.get('nonce') or content_str
             if key and key not in seen:
                 seen.add(key)
                 result.append(item)

@@ -10,6 +10,11 @@ import os
 import sys
 from dataclasses import dataclass, field
 from typing import Optional
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv(Path(__file__).parent / ".env")
 
 
 # =============================================================================
@@ -30,10 +35,10 @@ class AMCConfig:
     min_string_len: int = 8
     json_keys_of_interest: list[str] = field(default_factory=lambda: [
         "content", "author", "username", "id", "timestamp", "channelId",
-        "guildId", "nonce", "type", "webhook", "bot", "message",
-        "embed", "attachment", "url",
+        "channel_id", "guildId", "guild_id", "nonce", "type", "webhook",
+        "bot", "message", "embed", "attachment", "attachments", "url",
     ])
-    json_key_threshold: int = 2
+    json_key_threshold: int = 1
     noise_patterns: list[str] = field(default_factory=lambda: [
         r"[A-Za-z]:\\[\w\\/. -]+",                          # Windows file paths
         r"\{[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}\}",  # GUIDs
@@ -45,17 +50,29 @@ class AMCConfig:
 
     def __post_init__(self) -> None:
         if self.volatility_path is None:
-            self.volatility_path = os.environ.get("DISCORD_VOL_PATH")
+            self.volatility_path = (
+                os.environ.get("DISCORD_VOL_PATH") or
+                os.environ.get("RAM_WEAVER_VOL_PATH")
+            )
         if self.python_executable is None:
             self.python_executable = (
                 os.environ.get("DISCORD_PYTHON") or
+                os.environ.get("RAM_WEAVER_PYTHON") or
                 os.environ.get("PYTHON_BIN") or
                 sys.executable
             )
         if not self.vad_dump_dir:
-            self.vad_dump_dir = os.environ.get("DISCORD_VAD_DUMP_DIR", "./vad_dumps")
+            self.vad_dump_dir = (
+                os.environ.get("DISCORD_VAD_DUMP_DIR") or
+                os.environ.get("RAM_WEAVER_VAD_DUMP_DIR") or
+                "./vad_dumps"
+            )
         if not self.output_dir:
-            self.output_dir = os.environ.get("DISCORD_OUTPUT_DIR", "./output_discord")
+            self.output_dir = (
+                os.environ.get("DISCORD_OUTPUT_DIR") or
+                os.environ.get("RAM_WEAVER_OUTPUT_DIR") or
+                "./output_discord"
+            )
 
 
 # =============================================================================

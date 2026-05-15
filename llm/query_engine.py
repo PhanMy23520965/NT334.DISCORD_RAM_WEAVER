@@ -12,7 +12,7 @@ from __future__ import annotations
 import logging
 import json
 from typing import Optional, List, Dict
-from .client import GeminiClient
+from llm.client import GeminiClient
 
 log = logging.getLogger("discord_weaver.llm.query_engine")
 

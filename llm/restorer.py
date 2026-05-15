@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 import json
 from typing import Optional, List
-from .client import GeminiClient
+from llm.client import GeminiClient
 
 log = logging.getLogger("discord_weaver.llm.restorer")
 
@@ -33,7 +33,9 @@ class DiscordMessageRestorer:
         """
         restored = []
         
-        for msg in corrupted_messages:
+        for i, msg in enumerate(corrupted_messages):
+            if i % 10 == 0:
+                print(f"      Restoring message {i+1}/{len(corrupted_messages)}...")
             restored_msg = self.restore_single_message(msg)
             if restored_msg:
                 restored.append(restored_msg)
@@ -52,10 +54,12 @@ class DiscordMessageRestorer:
         if not corrupted_msg.get('content'):
             return corrupted_msg  # Nothing to restore
 
-        content = corrupted_msg.get('content', '')
+        # Ensure content is a string
+        content_val = corrupted_msg.get('content', '')
+        content = str(content_val) if content_val is not None else ""
         
-        # Skip if content looks complete
-        if len(content) > 50 and not self._looks_corrupted(content):
+        # If it's already a clean, long message, don't waste tokens
+        if len(content) > 100 and not self._looks_corrupted(content):
             return corrupted_msg
 
         # Try to restore

@@ -95,9 +95,9 @@ def check_dump_file():
     print("📌 Dump File Check")
     
     try:
-        dump_path = os.environ.get('DISCORD_DUMP_PATH')
+        dump_path = os.environ.get('DISCORD_DUMP_PATH') or os.environ.get('RAM_WEAVER_DUMP_PATH')
         if not dump_path:
-            print("   ✗ DISCORD_DUMP_PATH not set\n")
+            print("   ✗ Dump path not set (checked DISCORD_DUMP_PATH and RAM_WEAVER_DUMP_PATH)\n")
             return False
         
         dump_file = Path(dump_path)
@@ -115,43 +115,55 @@ def check_dump_file():
         return False
 
 
-def check_output_dir():
-    """Check output directory."""
-    print("📌 Output Directory Check")
+def check_volatility():
+    """Check Volatility 3 path."""
+    print("📌 Volatility Check")
+    vol_path = os.environ.get('DISCORD_VOL_PATH') or os.environ.get('RAM_WEAVER_VOL_PATH')
     
-    output_dir = Path(__file__).parent / "output_discord"
-    if not output_dir.exists():
-        print(f"   Creating: {output_dir}")
-        output_dir.mkdir(parents=True, exist_ok=True)
+    if not vol_path:
+        print("   ✗ Volatility path not set\n")
+        return False
     
-    print(f"   ✓ Output directory: {output_dir}\n")
-    return True
+    vol_file = Path(vol_path)
+    if vol_file.exists():
+        print(f"   ✓ Volatility found: {vol_path}")
+        try:
+            # Simple version check
+            process = subprocess.run([vol_path, "--version"], capture_output=True, text=True)
+            if process.returncode == 0:
+                print(f"   ✓ {process.stdout.strip()}")
+            return True
+        except Exception:
+            print("   ⚠ Found but failed to execute (check permissions)")
+            return True
+    else:
+        print(f"   ✗ Volatility NOT found at: {vol_path}\n")
+        return False
 
 
 def check_api_key():
     """Check API key validity (basic check)."""
-    print("📌 API Key Check")
+    print("API Key Check")
     
     api_key = os.environ.get('GEMINI_API_KEY')
     if not api_key:
-        print("   ✗ GEMINI_API_KEY not set\n")
+        print("   - GEMINI_API_KEY not set\n")
         return False
     
     if len(api_key) < 20:
-        print("   ✗ API key seems too short\n")
+        print("   - API key seems too short\n")
         return False
     
-    print(f"   ✓ API key format OK (length: {len(api_key)})")
-    print(f"   → Actual validation happens during first API call\n")
+    print(f"   + API key format OK")
     return True
 
 
 def main():
     """Run all diagnostics."""
     print("\n")
-    print("╔════════════════════════════════════════════════════════════════╗")
-    print("║  Discord-Weaver Environment Diagnostic                         ║")
-    print("╚════════════════════════════════════════════════════════════════╝")
+    print("+" + "-"*64 + "+")
+    print("|  Discord-Weaver Environment Diagnostic                         |")
+    print("+" + "-"*64 + "+")
     print()
     
     # Load .env
@@ -167,9 +179,9 @@ def main():
         'Python': check_python_version(),
         'Packages': check_packages(),
         'Env File': check_env_file(),
+        'Volatility': check_volatility(),
         'API Key': check_api_key(),
         'Dump File': check_dump_file(),
-        'Output Dir': check_output_dir(),
     }
     
     # Summary

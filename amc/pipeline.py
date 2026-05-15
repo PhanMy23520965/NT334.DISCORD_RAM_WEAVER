@@ -73,7 +73,7 @@ class AdaptiveMemoryCarver:
         return str(output_file)
 
     def _save_output(self, filter_result, pid: Optional[int]) -> Path:
-        pid_tag = pid if pid is not None else "unknown"
+        pid_tag = str(pid) if pid is not None else "unknown"
         output_file = self.output_dir / f"discord_amc_output_pid{pid_tag}.txt"
 
         with open(output_file, 'w', encoding='utf-8') as f:

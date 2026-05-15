@@ -1,0 +1,357 @@
+{
+  "statistics": {
+    "original_strings": 518584,
+    "filtered_strings": 10401,
+    "original_json_objects": 478,
+    "messages": 4,
+    "user_data": 1,
+    "metadata": 30
+  },
+  "messages": [
+    {
+      "mobile_network_type": "unknown",
+      "content": "Yes  I do. Did you know Bruce Lee was a cha cha dancer?",
+      "nonce": "1504814031960014848",
+      "tts": false,
+      "flags": 0
+    },
+    {
+      "mobile_network_type": "unknown",
+      "content": "do you like dance?",
+      "nonce": "1504813979598323712",
+      "tts": false,
+      "flags": 0
+    },
+    {
+      "content": 669
+    },
+    {
+      "mobile_network_type": "unknown",
+      "content": "If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.",
+      "nonce": "1504814224528900096",
+      "tts": false,
+      "flags": 0
+    }
+  ],
+  "user_data": [
+    {
+      "id": "1133266068920619060",
+      "username": "myphan4605",
+      "email": "phannguyenkieumy123@gmail.com"
+    }
+  ],
+  "metadata": [
+    {
+      "timestamp": 1778845993.205,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846000.025,
+      "category": "electron",
+      "message": "window.focus",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846000.025,
+      "category": "electron",
+      "message": "app.browser-window-focus",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846012.135,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846012.135,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846020.405,
+      "category": "electron",
+      "message": "window.focus",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846020.405,
+      "category": "electron",
+      "message": "app.browser-window-focus",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846024.526,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846024.526,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846042.525,
+      "category": "electron",
+      "message": "window.focus",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846042.526,
+      "category": "electron",
+      "message": "app.browser-window-focus",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846045.437,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846045.438,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846053.814,
+      "category": "electron",
+      "message": "window.focus",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846053.815,
+      "category": "electron",
+      "message": "app.browser-window-focus",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846056.765,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846056.766,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778846061.88,
+      "category": "electron",
+      "message": "window.focus",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846061.88,
+      "category": "electron",
+      "message": "app.browser-window-focus",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778845895.397,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778845895.397,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778845990.657,
+      "category": "electron",
+      "message": "window.focus",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778845990.658,
+      "category": "electron",
+      "message": "app.browser-window-focus",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778845993.205,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846071.088,
+      "category": "electron",
+      "message": "window.blur",
+      "type": "ui",
+      "data": {
+        "id": 2,
+        "url": "https://discordapp.com/channels/@me/1504737847104766034"
+      }
+    },
+    {
+      "timestamp": 1778846071.088,
+      "category": "electron",
+      "message": "app.browser-window-blur",
+      "type": "ui"
+    },
+    {
+      "$id": "page.json#",
+      "$schema": "http://json-schema.org/draft-06/schema#",
+      "type": "object",
+      "optional": true,
+      "required": [
+        "startedDateTime",
+        "id",
+        "title",
+        "pageTimings"
+      ],
+      "properties": {
+        "startedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(\\d{4})(-)?(\\d\\d)(-)?(\\d\\d)(T)?(\\d\\d)(:)?(\\d\\d)(:)?(\\d\\d)(\\.\\d+)?(Z|([+-])(\\d\\d)(:)?(\\d\\d))"
+        },
+        "id": {
+          "type": "string",
+          "unique": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "pageTimings": {
+          "$ref": "pageTimings.json#"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "timestamp": 1778845438.609,
+      "category": "electron",
+      "message": "app.web-contents-created",
+      "type": "ui"
+    },
+    {
+      "timestamp": 1778845438.61,
+      "category": "electron",
+      "message": "app.browser-window-created",
+      "type": "ui"
+    },
+    {
+      "id": "AA22Wam6",
+      "type": "article",
+      "title": "Midu khoe nhan sắc ít son phấn khi tập luyện cùng chồng",
+      "abstract": "Diễn viên Midu để nhan sắc tự nhiên khi đến phòng gym cùng chồng, khoe khéo làn da tươi tắn, mịn màng ở tuổi U40.",
+      "url": "https://www.msn.com/vi-vn/lifestyle/other/midu-khoe-nhan-sắc-ít-son-phấn-khi-tập-luyện-cùng-chồng/ar-AA22Wam6",
+      "locale": "vi-vn",
+      "isLocalContent": false,
+      "publishedDateTime": "2026-05-11T17:03:00Z",
+      "feed": {
+        "id": "Y_49ccf6f8-8611-4285-8fd4-1a5b19d7b330",
+        "feedName": "Đời sống",
+        "lastFreActionTimestamp": 0,
+        "feedCompositionCategory": "7"
+      },
+      "images": [
+        {
+          "width": 560,
+          "height": 955,
+          "url": "https://th.bing.com/th?id=ORMS.16e7f0d21546ee3b07f97ab56c4a1ce1&pid=Wdp",
+          "title": "Midu khoe nhan sắc ít son phấn khi tập luyện cùng chồng",
+          "caption": "<a>Midu hé lộ khoảnh khắc đời thường bên chồng thiếu gia.</a>",
+          "focalRegion": {
+            "x1": 377,
+            "x2": 500,
+            "y1": 75,
+            "y2": 198
+          },
+          "source": "msn",
+          "colorSamples": [
+            {
+              "isDarkMode": true,
+              "hexColor": "#584126",
+              "isGreyScale": false
+            },
+            {
+              "isDarkMode": false,
+              "hexColor": "#E0D5C8",
+              "isGreyScale": false
+            }
+          ]
+        }
+      ],
+      "colorSamples": [
+        {
+          "isDarkMode": "TextBlock",
+          "text": "°C",
+          "wrap": true,
+          "spacing": "small"
+        },
+        {
+          "type": "TextBlock",
+          "text": " ",
+          "wrap": true,
+          "spacing": "small"
+        }
+      ],
+      "verticalContentAlignment": "center",
+      "spacing": "small"
+    }
+  ]
+}

@@ -27,9 +27,9 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import LLMConfig
-from .client import GeminiClient
-from .restorer import DiscordMessageRestorer
-from .query_engine import DiscordQueryEngine
+from llm.client import GeminiClient
+from llm.restorer import DiscordMessageRestorer
+from llm.query_engine import DiscordQueryEngine
 
 
 def _load_dotenv(env_file: Path) -> None:
@@ -121,13 +121,51 @@ def cmd_restore(chunks_file: str):
     print(f"      Restored {len([m for m in restored if m.get('restored')])} messages")
     
     # Save results
-    output_file = Path("output_discord") / "restored_messages.json"
-    output_file.parent.mkdir(parents=True, exist_ok=True)
+    output_dir = Path("output_discord")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = output_dir / "restored_messages.json"
     
+    # Deduplicate final results for cleaner output
+    unique_restored = []
+    seen_keys = set()
+    for m in restored:
+        # Use content + nonce or content + id as a unique key
+        content = m.get('content', '')
+        nonce = m.get('nonce', '')
+        msg_id = m.get('id', '')
+        key = f"{content}_{nonce}_{msg_id}"
+        if key not in seen_keys:
+            seen_keys.add(key)
+            unique_restored.append(m)
+            
     with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(restored, f, ensure_ascii=False, indent=2)
+        json.dump(unique_restored, f, ensure_ascii=False, indent=2)
     
-    print(f"✓ Restoration complete. Output: {output_file}")
+    # Save a human-readable text version
+    txt_output = output_dir / "restored_messages_readable.txt"
+    with open(txt_output, 'w', encoding='utf-8') as f:
+        f.write("=" * 80 + "\n")
+        f.write("DISCORD FORENSIC REPORT: RESTORED MESSAGES\n")
+        f.write("=" * 80 + "\n\n")
+        
+        for msg in unique_restored:
+            author_data = msg.get('author', {})
+            if isinstance(author_data, dict):
+                author = author_data.get('global_name') or author_data.get('username') or "Unknown"
+            else:
+                author = author_data or "Unknown"
+                
+            timestamp = msg.get('timestamp', 'Unknown')
+            content = msg.get('content', '')
+            channel = msg.get('channel_id') or msg.get('channelId') or "Unknown"
+            
+            f.write(f"TIMESTAMP : {timestamp}\n")
+            f.write(f"AUTHOR    : {author}\n")
+            f.write(f"CHANNEL   : {channel}\n")
+            f.write(f"CONTENT   :\n  {content}\n")
+            f.write("-" * 80 + "\n")
+            
+    print(f"✓ Restoration complete. JSON: {output_file}, Text: {txt_output}")
 
 
 def cmd_query(chunks_file: str, question: str):
