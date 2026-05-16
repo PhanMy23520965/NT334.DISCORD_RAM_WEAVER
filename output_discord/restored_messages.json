@@ -1,7 +1,76 @@
 [
   {
-    "content": 669,
-    "author_restored": true,
-    "restored_from_partial": true
+    "username": "myphan4605",
+    "global_name": "my phan",
+    "content": "If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.",
+    "nonce": "1504814224528900096",
+    "message_id": "1504814227276173322",
+    "channel_id": "",
+    "guild_id": "",
+    "timestamp": "",
+    "is_outbound": false,
+    "source": "author_block_rev"
+  },
+  {
+    "username": "myphan4605",
+    "global_name": "",
+    "content": "do you like dance?",
+    "nonce": "1504813979598323712",
+    "message_id": "",
+    "channel_id": "",
+    "guild_id": "",
+    "timestamp": "",
+    "is_outbound": true,
+    "source": "outbound",
+    "restored": true,
+    "original_content": "do you like dance?"
+  },
+  {
+    "username": "myphan4605",
+    "global_name": "",
+    "content": "Yes  I do. Did you know Bruce Lee was a cha cha dancer?",
+    "nonce": "1504814031960014848",
+    "message_id": "",
+    "channel_id": "",
+    "guild_id": "",
+    "timestamp": "",
+    "is_outbound": true,
+    "source": "outbound"
+  },
+  {
+    "username": "Asamai",
+    "global_name": "Asamai",
+    "content": "🔥",
+    "nonce": "",
+    "message_id": "",
+    "channel_id": "",
+    "guild_id": "",
+    "timestamp": "",
+    "is_outbound": false,
+    "source": "toast_notification"
+  },
+  {
+    "username": "Asamai",
+    "global_name": "Asamai",
+    "content": "😭 😭",
+    "nonce": "",
+    "message_id": "",
+    "channel_id": "",
+    "guild_id": "",
+    "timestamp": "",
+    "is_outbound": false,
+    "source": "toast_notification"
+  },
+  {
+    "username": "{1}",
+    "global_name": "{1}",
+    "content": "{2}",
+    "nonce": "",
+    "message_id": "",
+    "channel_id": "",
+    "guild_id": "",
+    "timestamp": "",
+    "is_outbound": false,
+    "source": "toast_notification"
   }
 ]

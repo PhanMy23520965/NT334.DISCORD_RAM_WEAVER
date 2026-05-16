@@ -113,36 +113,41 @@ class ArtifactFilter:
 
         for obj in json_objects:
             keys = set(obj.keys())
-
-            # Message: prioritize objects with 'content' and 'author' or 'channel_id'
-            if any(k in keys for k in ['content', 'channel_id', 'channelId', 'guild_id', 'guildId']):
-                # Exclude obvious UI logs that were missed by extractor
+            
+            # Message categorization
+            content_keys = {'content', 'message', 'body', 'text', 'description', 'summary'}
+            has_content = any(k in keys for k in content_keys)
+            has_id = any(k in keys for k in ['id', 'nonce', 'message_id'])
+            has_author = any(k in keys for k in ['author', 'username', 'author_id', 'user_id'])
+            has_channel = any(k in keys for k in ['channel_id', 'channelId', 'guild_id', 'guildId'])
+            
+            # User Data (Check this first to avoid misclassification as partial message)
+            if ('username' in keys or 'discriminator' in keys) and 'id' in keys:
+                user_data.append(obj)
+            
+            # Complete Message
+            elif has_content and (has_author and (has_channel or has_id)):
+                messages.append(obj)
+            
+            # Partial Message / Fragment
+            elif has_content or (has_id and (has_author or has_channel)):
+                # Filter out obvious UI logs from partial messages
                 if obj.get('message') in ['window.blur', 'app.browser-window-blur', 'app.browser-window-focus']:
-                    continue
-                
-                # Check if this is a complete or partial message
-                has_content = 'content' in keys
-                has_author = 'author' in keys or 'username' in keys
-                has_channel = any(k in keys for k in ['channel_id', 'channelId'])
-                
-                if has_content and has_author:
-                    messages.append(obj)
-                elif (has_content or has_author or has_channel) and len(keys & self.PARTIAL_MESSAGE_KEYS) >= 2:
-                    # FIX BUG-10: Keep partial messages instead of discarding
-                    partial_messages.append(obj)
+                    metadata.append(obj)
                 else:
-                    messages.append(obj)
-
-            # User: has username / avatar / discriminator
+                    partial_messages.append(obj)
+            
+            # User Data fallback
             elif keys & self.USER_KEYS:
                 user_data.append(obj)
-
-            # Metadata: has at least one recognisable Discord field
+            
+            # Metadata: anything else that looks like Discord
             elif keys & self.META_KEYS:
                 metadata.append(obj)
-
-            # Skip objects with no recognisable Discord fields
-            # (reduces noise in output)
+            
+            # Fallback: if it has any common Discord key, keep as metadata
+            elif any(k in keys for k in ['id', 'timestamp', 'type', 'name']):
+                metadata.append(obj)
 
         return messages, user_data, metadata, partial_messages
 

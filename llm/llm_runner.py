@@ -117,8 +117,18 @@ def cmd_restore(chunks_file: str):
     client = GeminiClient(config.api_key, config.model_name, config.temperature, config.max_tokens)
     restorer = DiscordMessageRestorer(client)
     
-    restored = restorer.restore_messages(chunks.get('messages', []))
-    print(f"      Restored {len([m for m in restored if m.get('restored')])} messages")
+    # Pass complete, partial, and channel-grouped messages (FIX BUG-10, BUG-11)
+    restored = restorer.restore_messages(
+        chunks.get('messages', []),
+        partial_messages=chunks.get('partial_messages', []),
+        messages_by_channel=chunks.get('messages_by_channel', {})
+    )
+    
+    # Print status using new fields
+    total_in = len(chunks.get('messages', [])) + len(chunks.get('partial_messages', []))
+    total_out = len([m for m in restored if m.get('restored') or m.get('restored_content')])
+    print(f"      Processed {total_in} fragments")
+    print(f"      Restored {total_out} messages")
     
     # Save results
     output_dir = Path("output_discord")

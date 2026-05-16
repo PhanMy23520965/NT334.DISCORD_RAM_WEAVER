@@ -2,19 +2,19 @@
 Discord-Weaver Stage 1 — Adaptive Memory Carver v2 Output
 ======================================================================
 
-Timestamp:    2026-05-16 10:59:09
+Timestamp:    2026-05-16 11:02:27
 Source:       D:\nt334\discord1.raw
-PID:          6612
+PID:          6460
 Owner:        myphan4605
 Owner Email:  phannguyenkieumy123@gmail.com
 Owner ID:     1133266068920619060
-Channels:     1504737847104766034
+Channels:     1504737847104766034, 1504737847104766034237
 
 Extraction Statistics:
   Raw candidates:     37
   Unique messages:    6
   Duplicates removed: 31
-  Extraction time:    145.9s
+  Extraction time:    146.0s
 
 Post-Filter Statistics (RAM-Weaver Targeted Artifact Filtering):
   After category rejection: 6

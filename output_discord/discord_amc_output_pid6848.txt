@@ -1,0 +1,40 @@
+======================================================================
+Discord-Weaver Stage 1 — Adaptive Memory Carver v2 Output
+======================================================================
+
+Timestamp:    2026-05-16 10:59:46
+Source:       D:\nt334\discord1.raw
+PID:          6848
+Owner:        myphan4605
+Owner Email:  phannguyenkieumy123@gmail.com
+Owner ID:     1133266068920619060
+Channels:     1504737847104766034
+
+Extraction Statistics:
+  Raw candidates:     3
+  Unique messages:    2
+  Duplicates removed: 1
+  Extraction time:    19.5s
+
+Post-Filter Statistics (RAM-Weaver Targeted Artifact Filtering):
+  After category rejection: 2
+  After signal scoring:     2 (threshold ≥ 20)
+  After deduplication:      2
+  Final messages:           2
+  Size reduction:           59 → 103 bytes (-74.6%)
+  SNR:                      20.13 dB
+
+Extraction sources (pre-filter):
+  outbound                 :     1 messages
+  toast_notification       :     1 messages
+
+----------------------------------------------------------------------
+FILTERED MESSAGES (2 kept from 2 raw)
+----------------------------------------------------------------------
+
+[0001] [2026-05-15 18:53:43] [→SENT]
+  myphan4605: Yes  I do. Did you know Bruce Lee was a cha cha dancer?
+
+[0002]
+  Asamai: 🔥
+

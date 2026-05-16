@@ -147,6 +147,7 @@ class DiscordMessageRestorer:
         author = msg.get('author', msg.get('username', 'Unknown'))
         channel_id = msg.get('channel_id') or msg.get('channelId', 'Unknown')
         timestamp = msg.get('timestamp', 'Unknown')
+        raw_context = msg.get('_raw_context', '')
         
         # Build context from nearby messages (FIX BUG-14)
         context_str = "No nearby messages"
@@ -162,26 +163,31 @@ class DiscordMessageRestorer:
                 context_str = "\n".join(context_lines)
         
         if is_partial:
-            # Enhanced prompt for partial messages (FIX BUG-12)
-            prompt = f"""Restore this incomplete/partial Discord message from memory dump.
+            # Enhanced prompt for partial messages with STITCHING (SOLUTION 2)
+            prompt = f"""Tôi có một tập hợp các mảnh vỡ bộ nhớ chứa nội dung chat Discord. Chúng bị đứt gãy và lộn xộn. 
+Hãy dùng khả năng suy luận ngữ cảnh của bạn để khâu (stitch) và khôi phục lại tin nhắn gốc.
 
-Message Metadata:
-- Author: {author}
+Thông tin trích xuất được:
+- Tác giả: {author}
 - Channel ID: {channel_id}
-- Timestamp: {timestamp}
-- Extracted Content: {content if content else "(MISSING)"}
+- Thời gian: {timestamp}
+- Nội dung (có thể thiếu): {content if content else "(TRỐNG)"}
 
-Channel Context (recent messages):
+Ngữ cảnh bộ nhớ thô (Raw Context - 2000 byte xung quanh):
+--- START RAW CONTEXT ---
+{raw_context[:4000]}
+--- END RAW CONTEXT ---
+
+Bối cảnh các tin nhắn lân cận:
 {context_str}
 
-Task:
-1. If author is missing: infer from context
-2. If content is empty: reconstruct from metadata and context
-3. If content is partial: complete it naturally
-4. Maintain Discord message style and context
-5. Return ONLY the complete message content, no metadata or explanation
+Nhiệm vụ:
+1. Dựa vào "Raw Context" và "Bối cảnh" để tìm các phần văn bản bị thiếu của tin nhắn này.
+2. Nếu thiếu tác giả, hãy suy luận từ ngữ cảnh trò chuyện.
+3. Khôi phục lại một tin nhắn hoàn chỉnh, tự nhiên, đúng phong cách Discord.
+4. Chỉ trả về NỘI DUNG tin nhắn đã được khôi phục, không kèm giải thích hay metadata.
 
-Restored Message:"""
+Tin nhắn khôi phục:"""
         else:
             # Standard prompt for corrupted complete messages (FIX BUG-13)
             prompt = f"""Restore this Discord message that may be corrupted or truncated.

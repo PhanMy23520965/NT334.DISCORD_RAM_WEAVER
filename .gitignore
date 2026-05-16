@@ -1,0 +1,4 @@
+*.dmp
+vad_dumps/
+.env
+.venv

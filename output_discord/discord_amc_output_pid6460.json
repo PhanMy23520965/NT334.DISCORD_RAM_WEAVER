@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "AMC v2 + RAM-Weaver Post-Filter",
-    "timestamp": "2026-05-16T10:59:09.598827",
+    "timestamp": "2026-05-16T11:02:27.459146",
     "source": "D:\\nt334\\discord1.raw",
-    "pid": 6612,
+    "pid": 6460,
     "extraction_statistics": {
       "total_raw_candidates": 37,
       "unique_messages": 6,
@@ -14,11 +14,12 @@
         "username": "myphan4605",
         "email": "phannguyenkieumy123@gmail.com"
       },
-      "channels_found": 1,
+      "channels_found": 2,
       "channel_ids": [
-        "1504737847104766034"
+        "1504737847104766034",
+        "1504737847104766034237"
       ],
-      "extraction_time_seconds": 145.9,
+      "extraction_time_seconds": 146.01,
       "pid": null
     },
     "post_filter_statistics": {
@@ -42,7 +43,8 @@
       "email": "phannguyenkieumy123@gmail.com"
     },
     "channel_ids": [
-      "1504737847104766034"
+      "1504737847104766034",
+      "1504737847104766034237"
     ]
   },
   "messages": [

@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "version": "AMC v2 + RAM-Weaver Post-Filter",
+    "timestamp": "2026-05-16T10:59:27.340954",
+    "source": "D:\\nt334\\discord1.raw",
+    "pid": 6724,
+    "extraction_statistics": {
+      "total_raw_candidates": 3,
+      "unique_messages": 2,
+      "duplicates_removed": 1,
+      "detected_owner": "myphan4605",
+      "user_info": {
+        "id": "1133266068920619060",
+        "username": "myphan4605",
+        "email": "phannguyenkieumy123@gmail.com"
+      },
+      "channels_found": 1,
+      "channel_ids": [
+        "1504737847104766034"
+      ],
+      "extraction_time_seconds": 17.72,
+      "pid": 6724
+    },
+    "post_filter_statistics": {
+      "input_messages": 2,
+      "input_bytes": 13,
+      "after_category_rejection": 2,
+      "rejected_by_category": {},
+      "after_scoring": 2,
+      "scoring_threshold": 20,
+      "after_dedup": 2,
+      "duplicates_removed": 0,
+      "final_messages": 2,
+      "final_bytes": 31,
+      "reduction_pct": -138.46,
+      "snr_db": 14.91
+    },
+    "snr_db": 14.913616938342727,
+    "user_info": {
+      "id": "1133266068920619060",
+      "username": "myphan4605",
+      "email": "phannguyenkieumy123@gmail.com"
+    },
+    "channel_ids": [
+      "1504737847104766034"
+    ]
+  },
+  "messages": [
+    {
+      "username": "Asamai",
+      "global_name": "Asamai",
+      "content": "😭 😭",
+      "nonce": "",
+      "message_id": "",
+      "channel_id": "",
+      "guild_id": "",
+      "timestamp": "",
+      "is_outbound": false,
+      "source": "toast_notification"
+    },
+    {
+      "username": "Asamai",
+      "global_name": "Asamai",
+      "content": "🔥",
+      "nonce": "",
+      "message_id": "",
+      "channel_id": "",
+      "guild_id": "",
+      "timestamp": "",
+      "is_outbound": false,
+      "source": "toast_notification"
+    }
+  ]
+}

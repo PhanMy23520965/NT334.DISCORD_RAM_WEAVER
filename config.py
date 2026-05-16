@@ -25,27 +25,23 @@ load_dotenv(Path(__file__).parent / ".env")
 class AMCConfig:
     volatility_path: str | None = None
     python_executable: str | None = None
-    volatility_timeout: int = 300
+    volatility_plugin: str = "windows.memmap.Memmap"
+    volatility_timeout: int = 600
     vad_dump_dir: str = "./vad_dumps"
     output_dir: str = "./output_discord"
     extraction_mode: str = "auto"
+    # Sliding window settings
+    chunk_size: int = 64 * 1024          # 64KB chunks for scanning
+    overlap_size: int = 8 * 1024         # 8KB overlap to catch boundary messages
+    # Regex settings
+    regex_max_gap: int = 800             # Max chars between username and content
     encodings: list[str] = field(
         default_factory=lambda: ["utf-8", "utf-16-le"]
     )
-    min_string_len: int = 8
-    json_keys_of_interest: list[str] = field(default_factory=lambda: [
-        "content", "author", "username", "id", "timestamp", "channelId",
-        "channel_id", "guildId", "guild_id", "nonce", "type", "webhook",
-        "bot", "message", "embed", "attachment", "attachments", "url",
-    ])
-    json_key_threshold: int = 1
     noise_patterns: list[str] = field(default_factory=lambda: [
-        r"[A-Za-z]:\\[\w\\/. -]+",                          # Windows file paths
-        r"\{[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}\}",  # GUIDs
-        r"https?://[^\s\"'<>]{5,200}",                      # URLs
-        r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}",                  # IPv4 addresses
-        r"[A-Za-z0-9+/]{40,}={0,2}",                        # base64 blobs ≥40 chars
-        r"\\x[0-9a-fA-F]{2}",                               # escaped hex literals
+        r"[A-Za-z]:\\[\w\\/. -]+",
+        r"\{[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}\}",
+        r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}",
     ])
 
     def __post_init__(self) -> None:
