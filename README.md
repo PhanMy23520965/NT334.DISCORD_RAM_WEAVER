@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Discord-Weaver: Discord Memory Forensics Analysis
 
 ## Kiến trúc
@@ -82,13 +81,13 @@ Các biến cần thiết:
 
 ```bash
 # Restore messages
-./run_pipeline.sh D:\\discord.raw 352 restore
+bash run_pipeline.sh D:\\discord.raw 352 restore
 
 # Execute query
-./run_pipeline.sh D:\\discord.raw 352 query "Who sent the most messages?"
+bash run_pipeline.sh D:\\discord.raw 352 query "Who sent the most messages?"
 
 # Interactive session
-./run_pipeline.sh D:\\discord.raw 352 interactive
+bash run_pipeline.sh D:\\discord.raw 352 interactive
 ```
 
 ### Cách 2: Chạy từng stage riêng
