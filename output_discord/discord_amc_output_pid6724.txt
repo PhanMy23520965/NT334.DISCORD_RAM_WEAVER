@@ -2,27 +2,34 @@
 Discord-Weaver Stage 1 — Adaptive Memory Carver v2 Output
 ======================================================================
 
-Timestamp:    2026-05-16 10:59:27
+Timestamp:    2026-05-18 09:43:15
 Source:       D:\nt334\discord1.raw
 PID:          6724
 Owner:        myphan4605
 Owner Email:  phannguyenkieumy123@gmail.com
 Owner ID:     1133266068920619060
-Channels:     1504737847104766034
+Channels:     1504737847104766034, 1504737847104766034237
 
 Extraction Statistics:
   Raw candidates:     3
   Unique messages:    2
   Duplicates removed: 1
-  Extraction time:    17.7s
+  Extraction time:    69.3s
 
 Post-Filter Statistics (RAM-Weaver Targeted Artifact Filtering):
   After category rejection: 2
   After signal scoring:     2 (threshold ≥ 20)
   After deduplication:      2
   Final messages:           2
-  Size reduction:           13 → 31 bytes (-138.5%)
-  SNR:                      14.91 dB
+  Size reduction:           4 → 4 bytes (0.0%)
+  SNR:                      3.01 dB
+
+  Category rejection breakdown:
+    UI_LOG                   :     0
+    WEB_ASSET                :     0
+    V8_INTERNAL              :     0
+    FILE_PATH                :     0
+    SYSTEM_LOG               :     0
 
 Extraction sources (pre-filter):
   toast_notification       :     2 messages

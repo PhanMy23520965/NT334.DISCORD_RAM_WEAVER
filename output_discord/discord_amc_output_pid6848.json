@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "AMC v2 + RAM-Weaver Post-Filter",
-    "timestamp": "2026-05-16T10:59:46.852840",
+    "timestamp": "2026-05-18T09:44:28.812752",
     "source": "D:\\nt334\\discord1.raw",
     "pid": 6848,
     "extraction_statistics": {
@@ -14,50 +14,45 @@
         "username": "myphan4605",
         "email": "phannguyenkieumy123@gmail.com"
       },
-      "channels_found": 1,
+      "channels_found": 2,
       "channel_ids": [
+        "1504737847104766034237",
         "1504737847104766034"
       ],
-      "extraction_time_seconds": 19.49,
+      "extraction_time_seconds": 73.71,
       "pid": 6848
     },
     "post_filter_statistics": {
-      "input_messages": 2,
-      "input_bytes": 59,
       "after_category_rejection": 2,
-      "rejected_by_category": {},
       "after_scoring": 2,
-      "scoring_threshold": 20,
       "after_dedup": 2,
-      "duplicates_removed": 0,
       "final_messages": 2,
-      "final_bytes": 103,
-      "reduction_pct": -74.58,
-      "snr_db": 20.13
+      "scoring_threshold": 20,
+      "input_bytes": 56,
+      "final_bytes": 56,
+      "reduction_pct": 0.0,
+      "snr_db": 3.010299956639812,
+      "input_messages": 2,
+      "rejected_by_category": {
+        "UI_LOG": 0,
+        "WEB_ASSET": 0,
+        "V8_INTERNAL": 0,
+        "FILE_PATH": 0,
+        "SYSTEM_LOG": 0
+      }
     },
-    "snr_db": 20.128372247051722,
+    "snr_db": 3.010299956639812,
     "user_info": {
       "id": "1133266068920619060",
       "username": "myphan4605",
       "email": "phannguyenkieumy123@gmail.com"
     },
     "channel_ids": [
+      "1504737847104766034237",
       "1504737847104766034"
     ]
   },
   "messages": [
-    {
-      "username": "myphan4605",
-      "global_name": "",
-      "content": "Yes  I do. Did you know Bruce Lee was a cha cha dancer?",
-      "nonce": "1504814031960014848",
-      "message_id": "",
-      "channel_id": "",
-      "guild_id": "",
-      "timestamp": "",
-      "is_outbound": true,
-      "source": "outbound"
-    },
     {
       "username": "Asamai",
       "global_name": "Asamai",
@@ -67,8 +62,24 @@
       "channel_id": "",
       "guild_id": "",
       "timestamp": "",
+      "raw_timestamp": "",
+      "timestamp_source": "unavailable",
       "is_outbound": false,
       "source": "toast_notification"
+    },
+    {
+      "username": "myphan4605",
+      "global_name": "",
+      "content": "Yes  I do. Did you know Bruce Lee was a cha cha dancer?",
+      "nonce": "1504814031960014848",
+      "message_id": "",
+      "channel_id": "",
+      "guild_id": "",
+      "timestamp": "2026-05-15 18:53:43",
+      "raw_timestamp": "",
+      "timestamp_source": "nonce_snowflake",
+      "is_outbound": true,
+      "source": "outbound"
     }
   ]
 }

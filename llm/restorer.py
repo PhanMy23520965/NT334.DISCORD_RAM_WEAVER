@@ -144,9 +144,13 @@ class DiscordMessageRestorer:
     ) -> str:
         """Build restoration prompt for Gemini with Discord context (FIX BUG-13, BUG-14)."""
         content = msg.get('content', '')
-        author = msg.get('author', msg.get('username', 'Unknown'))
+        author_data = msg.get('author')
+        if isinstance(author_data, dict):
+            author = author_data.get('global_name') or author_data.get('username') or "Unknown"
+        else:
+            author = author_data or msg.get('global_name') or msg.get('username') or "Unknown"
         channel_id = msg.get('channel_id') or msg.get('channelId', 'Unknown')
-        timestamp = msg.get('timestamp', 'Unknown')
+        timestamp = msg.get('timestamp') or msg.get('raw_timestamp') or 'Unknown'
         raw_context = msg.get('_raw_context', '')
         
         # Build context from nearby messages (FIX BUG-14)
@@ -156,7 +160,11 @@ class DiscordMessageRestorer:
             recent_messages = channel_context[-3:]
             context_lines = []
             for ctx_msg in recent_messages:
-                ctx_author = ctx_msg.get('author', ctx_msg.get('username', 'Unknown'))
+                ctx_author_data = ctx_msg.get('author')
+                if isinstance(ctx_author_data, dict):
+                    ctx_author = ctx_author_data.get('global_name') or ctx_author_data.get('username') or "Unknown"
+                else:
+                    ctx_author = ctx_author_data or ctx_msg.get('global_name') or ctx_msg.get('username') or "Unknown"
                 ctx_content = str(ctx_msg.get('content', ''))[:100]
                 context_lines.append(f"  {ctx_author}: {ctx_content}")
             if context_lines:

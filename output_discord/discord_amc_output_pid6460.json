@@ -1,13 +1,13 @@
 {
   "metadata": {
     "version": "AMC v2 + RAM-Weaver Post-Filter",
-    "timestamp": "2026-05-16T11:02:27.459146",
+    "timestamp": "2026-05-18T09:47:44.657993",
     "source": "D:\\nt334\\discord1.raw",
     "pid": 6460,
     "extraction_statistics": {
-      "total_raw_candidates": 37,
-      "unique_messages": 6,
-      "duplicates_removed": 31,
+      "total_raw_candidates": 9,
+      "unique_messages": 4,
+      "duplicates_removed": 5,
       "detected_owner": "myphan4605",
       "user_info": {
         "id": "1133266068920619060",
@@ -16,49 +16,56 @@
       },
       "channels_found": 2,
       "channel_ids": [
-        "1504737847104766034",
-        "1504737847104766034237"
+        "1504737847104766034237",
+        "1504737847104766034"
       ],
-      "extraction_time_seconds": 146.01,
-      "pid": null
+      "extraction_time_seconds": 127.02,
+      "pid": 6460
     },
     "post_filter_statistics": {
-      "input_messages": 6,
-      "input_bytes": 514,
-      "after_category_rejection": 6,
-      "rejected_by_category": {},
-      "after_scoring": 6,
+      "after_category_rejection": 4,
+      "after_scoring": 4,
+      "after_dedup": 4,
+      "final_messages": 4,
       "scoring_threshold": 20,
-      "after_dedup": 6,
-      "duplicates_removed": 0,
-      "final_messages": 6,
-      "final_bytes": 640,
-      "reduction_pct": -24.51,
-      "snr_db": 28.06
+      "input_bytes": 499,
+      "final_bytes": 499,
+      "reduction_pct": 0.0,
+      "snr_db": 6.020599913279624,
+      "input_messages": 4,
+      "rejected_by_category": {
+        "UI_LOG": 0,
+        "WEB_ASSET": 0,
+        "V8_INTERNAL": 0,
+        "FILE_PATH": 0,
+        "SYSTEM_LOG": 0
+      }
     },
-    "snr_db": 28.06179973983887,
+    "snr_db": 6.020599913279624,
     "user_info": {
       "id": "1133266068920619060",
       "username": "myphan4605",
       "email": "phannguyenkieumy123@gmail.com"
     },
     "channel_ids": [
-      "1504737847104766034",
-      "1504737847104766034237"
+      "1504737847104766034237",
+      "1504737847104766034"
     ]
   },
   "messages": [
     {
-      "username": "myphan4605",
-      "global_name": "my phan",
-      "content": "If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.",
-      "nonce": "1504814224528900096",
-      "message_id": "1504814227276173322",
+      "username": "Asamai",
+      "global_name": "Asamai",
+      "content": "🔥",
+      "nonce": "",
+      "message_id": "",
       "channel_id": "",
       "guild_id": "",
       "timestamp": "",
-      "is_outbound": true,
-      "source": "outbound"
+      "raw_timestamp": "",
+      "timestamp_source": "unavailable",
+      "is_outbound": false,
+      "source": "toast_notification"
     },
     {
       "username": "myphan4605",
@@ -68,7 +75,9 @@
       "message_id": "",
       "channel_id": "",
       "guild_id": "",
-      "timestamp": "",
+      "timestamp": "2026-05-15 18:53:30",
+      "raw_timestamp": "",
+      "timestamp_source": "nonce_snowflake",
       "is_outbound": true,
       "source": "outbound"
     },
@@ -80,45 +89,25 @@
       "message_id": "",
       "channel_id": "",
       "guild_id": "",
-      "timestamp": "",
+      "timestamp": "2026-05-15 18:53:43",
+      "raw_timestamp": "",
+      "timestamp_source": "nonce_snowflake",
       "is_outbound": true,
       "source": "outbound"
     },
     {
-      "username": "Asamai",
-      "global_name": "Asamai",
-      "content": "🔥",
-      "nonce": "",
-      "message_id": "",
-      "channel_id": "",
+      "username": "myphan4605",
+      "global_name": "my phan",
+      "content": "If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.",
+      "nonce": "1504814224528900096",
+      "message_id": "1504814227276173322",
+      "channel_id": "1504737847104766034",
       "guild_id": "",
-      "timestamp": "",
+      "timestamp": "2026-05-15T11:54:29.879000+00:00",
+      "raw_timestamp": "2026-05-15T11:54:29.879000+00:00",
+      "timestamp_source": "embedded_timestamp",
       "is_outbound": false,
-      "source": "toast_notification"
-    },
-    {
-      "username": "Asamai",
-      "global_name": "Asamai",
-      "content": "😭 😭",
-      "nonce": "",
-      "message_id": "",
-      "channel_id": "",
-      "guild_id": "",
-      "timestamp": "",
-      "is_outbound": false,
-      "source": "toast_notification"
-    },
-    {
-      "username": "{1}",
-      "global_name": "{1}",
-      "content": "{2}",
-      "nonce": "",
-      "message_id": "",
-      "channel_id": "",
-      "guild_id": "",
-      "timestamp": "",
-      "is_outbound": false,
-      "source": "toast_notification"
+      "source": "author_block_rev"
     }
   ]
 }

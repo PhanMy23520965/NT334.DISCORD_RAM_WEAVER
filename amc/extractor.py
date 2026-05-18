@@ -82,6 +82,17 @@ class DiscordMessage:
             except Exception:
                 pass
         return ""
+
+    @property
+    def timestamp_source(self) -> str:
+        """Describe where the exported timestamp came from."""
+        if self.timestamp:
+            return "embedded_timestamp"
+        if self.message_id and self.message_id.isdigit():
+            return "message_id_snowflake"
+        if self.nonce and self.nonce.isdigit():
+            return "nonce_snowflake"
+        return "unavailable"
     
     def to_dict(self) -> dict:
         """Convert to dict for JSON serialization."""
@@ -93,7 +104,9 @@ class DiscordMessage:
             'message_id': self.message_id,
             'channel_id': self.channel_id,
             'guild_id': self.guild_id,
-            'timestamp': self.timestamp,
+            'timestamp': self.best_timestamp,
+            'raw_timestamp': self.timestamp,
+            'timestamp_source': self.timestamp_source,
             'is_outbound': self.is_outbound,
             'source': self.source,
         }
@@ -204,6 +217,10 @@ RE_GUILD_ID = re.compile(r'"guild_id"\s*:\s*"(?P<guild_id>\d{15,25})"')
 RE_TIMESTAMP = re.compile(r'"timestamp"\s*:\s*"(?P<timestamp>\d{4}-\d{2}-\d{2}T[^"]+)"')
 RE_GLOBAL_NAME = re.compile(r'"global_name"\s*:\s*"(?P<global_name>[^"]+)"')
 RE_MSG_ID = re.compile(r'"id"\s*:\s*"(?P<id>\d{15,25})"')
+RE_TOP_LEVEL_MSG_ID = re.compile(
+    r'"id"\s*:\s*"(?P<id>\d{15,25})"\s*,\s*"type"\s*:\s*\d+',
+    re.DOTALL
+)
 
 # User info detection
 RE_USER_INFO = re.compile(
@@ -532,6 +549,47 @@ class AdaptiveMemoryExtractor:
     # Phase 3: Multi-Pattern Regex Extraction
     # ------------------------------------------------------------------
 
+    def _enrich_message_metadata(
+        self,
+        msg: DiscordMessage,
+        text: str,
+        start: int,
+        end: int,
+        radius: int = 1200,
+    ) -> DiscordMessage:
+        """Attach nearby Discord metadata to a regex match when available."""
+        nearby = text[max(0, start - radius):min(len(text), end + radius)]
+
+        if not msg.timestamp:
+            ts = RE_TIMESTAMP.search(nearby)
+            if ts:
+                msg.timestamp = ts.group('timestamp')
+
+        if not msg.channel_id:
+            channel = RE_CHANNEL_ID.search(nearby)
+            if channel:
+                msg.channel_id = channel.group('channel_id')
+                self._channel_ids.add(msg.channel_id)
+
+        if not msg.guild_id:
+            guild = RE_GUILD_ID.search(nearby)
+            if guild:
+                msg.guild_id = guild.group('guild_id')
+
+        if not msg.message_id:
+            # Avoid generic "id" matches inside author/user objects; these are
+            # not message timestamps. Message objects normally carry id + type.
+            msg_id = RE_TOP_LEVEL_MSG_ID.search(nearby)
+            if msg_id:
+                msg.message_id = msg_id.group('id')
+
+        if not msg.global_name:
+            global_name = RE_GLOBAL_NAME.search(nearby)
+            if global_name and not is_noise_username(global_name.group('global_name')):
+                msg.global_name = global_name.group('global_name')
+
+        return msg
+
     def _extract_messages_from_text(self, text: str) -> List[DiscordMessage]:
         """Extract Discord messages from text using multiple regex patterns."""
         messages: List[DiscordMessage] = []
@@ -547,6 +605,7 @@ class AdaptiveMemoryExtractor:
                     is_outbound=True,
                     source='outbound',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         for m in RE_OUTBOUND_REV.finditer(text):
@@ -559,6 +618,7 @@ class AdaptiveMemoryExtractor:
                     is_outbound=True,
                     source='outbound_rev',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         # --- Pattern 2: API messages with author block ---
@@ -571,6 +631,7 @@ class AdaptiveMemoryExtractor:
                     content=content,
                     source='author_block',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         for m in RE_AUTHOR_BLOCK_REV.finditer(text):
@@ -582,6 +643,7 @@ class AdaptiveMemoryExtractor:
                     content=content,
                     source='author_block_rev',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         # --- Pattern 3: Simple username + content proximity ---
@@ -598,6 +660,7 @@ class AdaptiveMemoryExtractor:
                         content=content,
                         source='api_username_content',
                     )
+                    msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                     messages.append(msg)
         
         for m in RE_API_MSG_REV.finditer(text):
@@ -609,6 +672,7 @@ class AdaptiveMemoryExtractor:
                     content=content,
                     source='api_content_username',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         # --- Pattern 4: Content + ID (fallback for fragmented data) ---
@@ -621,6 +685,7 @@ class AdaptiveMemoryExtractor:
                     message_id=msg_id,
                     source='content_with_id',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         # --- Pattern 6: Windows Toast XML notification (messages received from others) ---
@@ -637,6 +702,7 @@ class AdaptiveMemoryExtractor:
                     content=content,
                     source='toast_notification',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         # --- Pattern 7: Outbound wrapped in _version container ---
@@ -650,6 +716,7 @@ class AdaptiveMemoryExtractor:
                     is_outbound=True,
                     source='outbound_wrapped',
                 )
+                msg = self._enrich_message_metadata(msg, text, m.start(), m.end())
                 messages.append(msg)
         
         # --- Extract metadata for context enrichment ---

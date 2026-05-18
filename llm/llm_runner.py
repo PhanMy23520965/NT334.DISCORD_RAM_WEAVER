@@ -142,7 +142,7 @@ def cmd_restore(chunks_file: str):
         # Use content + nonce or content + id as a unique key
         content = m.get('content', '')
         nonce = m.get('nonce', '')
-        msg_id = m.get('id', '')
+        msg_id = m.get('message_id') or m.get('id', '')
         key = f"{content}_{nonce}_{msg_id}"
         if key not in seen_keys:
             seen_keys.add(key)
@@ -163,9 +163,9 @@ def cmd_restore(chunks_file: str):
             if isinstance(author_data, dict):
                 author = author_data.get('global_name') or author_data.get('username') or "Unknown"
             else:
-                author = author_data or "Unknown"
+                author = author_data or msg.get('global_name') or msg.get('username') or "Unknown"
                 
-            timestamp = msg.get('timestamp', 'Unknown')
+            timestamp = msg.get('timestamp') or msg.get('raw_timestamp') or 'Unknown'
             content = msg.get('content', '')
             channel = msg.get('channel_id') or msg.get('channelId') or "Unknown"
             

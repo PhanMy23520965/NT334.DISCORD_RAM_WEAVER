@@ -99,10 +99,14 @@ Please provide a detailed forensic analysis based on the Discord data provided."
         context_lines = []
         
         for msg in messages[:100]:  # Limit to first 100
-            author = msg.get('author', 'Unknown')
+            author_data = msg.get('author')
+            if isinstance(author_data, dict):
+                author = author_data.get('global_name') or author_data.get('username') or "Unknown"
+            else:
+                author = author_data or msg.get('global_name') or msg.get('username') or "Unknown"
             content = msg.get('content', '')
-            timestamp = msg.get('timestamp', 'Unknown')
-            channel = msg.get('channelId', 'Unknown')
+            timestamp = msg.get('timestamp') or msg.get('raw_timestamp') or 'Unknown'
+            channel = msg.get('channel_id') or msg.get('channelId') or 'Unknown'
             
             context_lines.append(
                 f"[{timestamp}] {author} ({channel}): {content}"

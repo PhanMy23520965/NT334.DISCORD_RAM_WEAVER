@@ -1,5 +1,5 @@
 === DISCORD FORENSIC EXTRACT ===
-Owner: myphan4605 | Channels: 1504737847104766034
-=== MESSAGES (2 items, filtered from 2 raw, SNR: 20.1 dB) ===
-[2026-05-15 18:53:43] myphan4605: Yes  I do. Did you know Bruce Lee was a cha cha dancer?
+Owner: myphan4605 | Channels: 1504737847104766034, 1504737847104766034237
+=== MESSAGES (2 items, filtered from 2 raw, SNR: 3.0 dB) ===
 Asamai: 🔥
+[2026-05-15 18:53:43] myphan4605: Yes  I do. Did you know Bruce Lee was a cha cha dancer?

@@ -2,39 +2,45 @@
 DISCORD FORENSIC REPORT: RESTORED MESSAGES
 ================================================================================
 
-TIMESTAMP : 
-AUTHOR    : Unknown
-CHANNEL   : Unknown
-CONTENT   :
-  If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.
---------------------------------------------------------------------------------
-TIMESTAMP : 
-AUTHOR    : Unknown
-CHANNEL   : Unknown
-CONTENT   :
-  do you like dance?
---------------------------------------------------------------------------------
-TIMESTAMP : 
-AUTHOR    : Unknown
-CHANNEL   : Unknown
-CONTENT   :
-  Yes  I do. Did you know Bruce Lee was a cha cha dancer?
---------------------------------------------------------------------------------
-TIMESTAMP : 
+TIMESTAMP : Unknown
 AUTHOR    : Unknown
 CHANNEL   : Unknown
 CONTENT   :
   🔥
 --------------------------------------------------------------------------------
-TIMESTAMP : 
+TIMESTAMP : 2026-05-15 18:53:30
+AUTHOR    : Unknown
+CHANNEL   : Unknown
+CONTENT   :
+  do you like dance?
+--------------------------------------------------------------------------------
+TIMESTAMP : 2026-05-15 18:53:43
+AUTHOR    : Unknown
+CHANNEL   : Unknown
+CONTENT   :
+  Yes I do. Did you know Bruce Lee was a cha cha dancer?
+--------------------------------------------------------------------------------
+TIMESTAMP : 2026-05-15T11:54:29.879000+00:00
+AUTHOR    : Unknown
+CHANNEL   : 1504737847104766034
+CONTENT   :
+  If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.
+--------------------------------------------------------------------------------
+TIMESTAMP : Unknown
 AUTHOR    : Unknown
 CHANNEL   : Unknown
 CONTENT   :
   😭 😭
 --------------------------------------------------------------------------------
-TIMESTAMP : 
+TIMESTAMP : 2026-05-15 18:53:43
 AUTHOR    : Unknown
 CHANNEL   : Unknown
 CONTENT   :
-  {2}
+  Yes  I do. Did you know Bruce Lee was a cha cha dancer?
+--------------------------------------------------------------------------------
+TIMESTAMP : 2026-05-15 18:54:29
+AUTHOR    : Unknown
+CHANNEL   : Unknown
+CONTENT   :
+  If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.
 --------------------------------------------------------------------------------

@@ -2,51 +2,55 @@
 Discord-Weaver Stage 1 — Adaptive Memory Carver v2 Output
 ======================================================================
 
-Timestamp:    2026-05-16 10:59:09
+Timestamp:    2026-05-18 09:42:05
 Source:       D:\nt334\discord1.raw
 PID:          6612
 Owner:        myphan4605
 Owner Email:  phannguyenkieumy123@gmail.com
 Owner ID:     1133266068920619060
-Channels:     1504737847104766034
+Channels:     1504737847104766034, 1504737847104766034237
 
 Extraction Statistics:
-  Raw candidates:     37
-  Unique messages:    6
-  Duplicates removed: 31
-  Extraction time:    145.9s
+  Raw candidates:     12
+  Unique messages:    5
+  Duplicates removed: 7
+  Extraction time:    86.5s
 
 Post-Filter Statistics (RAM-Weaver Targeted Artifact Filtering):
-  After category rejection: 6
-  After signal scoring:     6 (threshold ≥ 20)
-  After deduplication:      6
-  Final messages:           6
-  Size reduction:           514 → 640 bytes (-24.5%)
-  SNR:                      28.06 dB
+  After category rejection: 5
+  After signal scoring:     5 (threshold ≥ 20)
+  After deduplication:      5
+  Final messages:           5
+  Size reduction:           502 → 502 bytes (0.0%)
+  SNR:                      6.99 dB
+
+  Category rejection breakdown:
+    UI_LOG                   :     0
+    WEB_ASSET                :     0
+    V8_INTERNAL              :     0
+    FILE_PATH                :     0
+    SYSTEM_LOG               :     0
 
 Extraction sources (pre-filter):
-  toast_notification       :     3 messages
   outbound                 :     3 messages
+  toast_notification       :     2 messages
 
 ----------------------------------------------------------------------
-FILTERED MESSAGES (6 kept from 6 raw)
+FILTERED MESSAGES (5 kept from 5 raw)
 ----------------------------------------------------------------------
 
-[0001] [2026-05-15 18:54:29] [→SENT]
-  my phan: If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.
-
-[0002] [2026-05-15 18:53:30] [→SENT]
-  myphan4605: do you like dance?
-
-[0003] [2026-05-15 18:53:43] [→SENT]
-  myphan4605: Yes  I do. Did you know Bruce Lee was a cha cha dancer?
-
-[0004]
-  Asamai: 🔥
-
-[0005]
+[0001]
   Asamai: 😭 😭
 
-[0006]
-  {1}: {2}
+[0002]
+  Asamai: 🔥
+
+[0003] [2026-05-15 18:53:30] [→SENT]
+  myphan4605: do you like dance?
+
+[0004] [2026-05-15 18:53:43] [→SENT]
+  myphan4605: Yes  I do. Did you know Bruce Lee was a cha cha dancer?
+
+[0005] [2026-05-15 18:54:29] [→SENT]
+  myphan4605: If you've played the game, you know how divine the music is! Every single song tells a story of the game, it's that good! The greatest songs are without a doubt, Chrono Cross: Time's Scar, Magical Dreamers: The Wind, The Stars, and the Sea and Radical Dreamers: Unstolen Jewel. (Translation varies) This music is perfect if you ask me, the best it can be. Yasunori Mitsuda just poured his heart on and wrote it down on paper.
 
